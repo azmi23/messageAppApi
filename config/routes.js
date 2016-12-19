@@ -21,7 +21,8 @@
  */
 
 module.exports.routes = {
-  'POST /user/signup': 'UserController.signup',
+  'POST /user/register': 'UserController.doRegister',
+  'PUT /user/login' : 'UserController.doLogin',
 
   /***************************************************************************
   *                                                                          *

@@ -13,16 +13,17 @@ module.exports = {
       unique: 'true'
     },
 
-    email: {
-      type: 'string',
-      email: 'true'
-    },
-
-    password: {
+    fullusername:{
       type: 'string'
     },
 
-    encryptedPassword: {
+    email: {
+      type: 'string',
+      email: 'true',
+      unique: 'true'
+    },
+
+    password: {
       type: 'string'
     },
 
