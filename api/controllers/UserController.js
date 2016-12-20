@@ -9,29 +9,29 @@ var passwordHash  = require('machinepack-passwords');
 module.exports = {
 	doRegister: function(req, res){
 		if (_.isUndefined(req.param('email'))) {
-	      return res.badRequest('An email address is required!');
+	      return res.json({message: 'an email address must required', status: '400'});
 	    }
 
     if (_.isUndefined(req.param('password'))) {
-      return res.badRequest('A password is required!');
+			return res.json({message: 'a password address must required', status: '400'});
     }
 
     if (req.param('password').length < 6) {
-      return res.badRequest('Password must be at least 6 characters!');
+			return res.json({message: 'Password must be at least 6 characters!', status: '400'});
     }
 
     if (_.isUndefined(req.param('username'))) {
-      return res.badRequest('A username is required!');
+			return res.json({message: 'A username is required!', status: '400'});
     }
 
     // username must be at least 6 characters
     if (req.param('username').length < 6) {
-      return res.badRequest('Username must be at least 6 characters!');
+			return res.json({message: 'Username must be at least 6 characters!', status: '400'});
     }
 
     // Username must contain only numbers and letters.
     if (!_.isString(req.param('username')) || req.param('username').match(/[^a-z0-9]/i)) {
-      return res.badRequest('Invalid username: must consist of numbers and letters only.');
+			return res.json({message: 'Invalid username: must consist of numbers and letters only.', status: '400'});
     }
 
 		passwordHash.encryptPassword({
@@ -67,7 +67,7 @@ module.exports = {
 
 					req.session.userId = createdUser.id;
 
-					return res.json({message: 'user created', code: '201'});
+					return res.json({message: 'user created', status: '201'});
 				});
 			}
 		});
@@ -110,7 +110,7 @@ module.exports = {
 
 					req.session.id=createdUser.id;
 
-					res.json({message:'you logged in', code:'201'});
+					res.json({message:'you logged in', status:'201'});
 				}
 			});
 		});
